@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVERCORE - 2026-2027 Entrepreneur OS | Purple Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#050409;--bg2:#0a0812;--panel:#0e0b18;--panel2:#141024;--panel3:#1c1630;
+  --border:#241c3b;--border2:#352a5c;--text:#f0ebff;--muted:#9d93c2;--dim:#6c6393;
+  --p:#8b5cf6;--p2:#a855f7;--p3:#c4b5fd;--pglow:rgba(139,92,246,.38);
+  --green:#4ade80;--red:#fb7185;--amber:#fbbf24;--cyan:#67e8f9;
+  --r:16px;--grad:linear-gradient(135deg,#6d28d9,#9333ea 55%,#c026d3);
+  --fd:'Space Grotesk',Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:14px;-webkit-font-smoothing:antialiased;overflow:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 520px at 88% -12%,rgba(124,58,237,.20),transparent 60%),radial-gradient(700px 420px at 8% 112%,rgba(192,38,211,.10),transparent 60%)}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+button:disabled{cursor:not-allowed;opacity:.35}
+input,select,textarea{font:inherit;color:var(--text)}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;border:3px solid transparent;background-clip:padding-box}::-webkit-scrollbar-track{background:transparent}
+svg{flex-shrink:0}
+
+.app{display:flex;height:100vh;position:relative;z-index:1}
+/* Sidebar */
+.sidebar{width:272px;flex-shrink:0;background:rgba(9,7,16,.88);backdrop-filter:blur(14px);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:40}
+.brand{display:flex;align-items:center;gap:12px;padding:22px;border-bottom:1px solid var(--border)}
+.brand-logo{width:42px;height:42px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:0 8px 26px var(--pglow);color:#fff}
+.brand-logo svg{width:22px;height:22px}
+.brand h1{font-family:var(--fd);font-size:18px;font-weight:700;letter-spacing:-.02em}
+.brand small{font-size:10.5px;letter-spacing:.16em;color:var(--p3);font-weight:700}
+.nav{padding:10px 14px 16px;display:flex;flex-direction:column;gap:3px;flex:1;overflow-y:auto}
+.nav-label{font-size:10px;letter-spacing:.16em;color:var(--dim);font-weight:700;padding:16px 12px 6px;text-transform:uppercase}
+.nav-btn{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;color:var(--muted);font-weight:500;transition:.18s;text-align:left}
+.nav-btn svg{width:18px;height:18px}
+.nav-btn:hover{background:var(--panel2);color:var(--text)}
+.nav-btn.active{background:var(--grad);color:#fff;box-shadow:0 10px 26px -8px var(--pglow)}
+.nav-btn .badge{margin-left:auto;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--panel3);color:var(--p3)}
+.nav-btn.active .badge{background:rgba(255,255,255,.18);color:#fff}
+.side-foot{padding:16px 20px;border-top:1px solid var(--border);font-size:11.5px;color:var(--dim);line-height:1.5}
+.side-foot .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;color:var(--muted);font-weight:600;font-size:12px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-right:8px;box-shadow:0 0 10px var(--green)}
+.saved{font-size:10.5px;padding:3px 9px;border-radius:99px;background:var(--panel3);color:var(--p3);transition:.35s;font-weight:700}
+.saved.flash{background:var(--p);color:#fff;box-shadow:0 0 14px var(--pglow)}
+.scrim{display:none}
+
+/* Main */
+.main-wrap{flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{height:72px;display:flex;align-items:center;gap:14px;padding:0 32px;border-bottom:1px solid var(--border);background:rgba(8,6,14,.72);backdrop-filter:blur(14px);flex-shrink:0}
+.topbar h2{font-family:var(--fd);font-size:20px;font-weight:700;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.menu-btn{display:none!important}
+.top-stats{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:12.5px;color:var(--muted)}
+.top-stats b{margin-left:6px;color:var(--text)}
+.top-user{display:flex;align-items:center;gap:10px;padding-left:22px;border-left:1px solid var(--border);font-weight:600;color:var(--text);cursor:pointer}
+.av{border-radius:50%;object-fit:cover;background:var(--grad);display:grid;place-items:center;font-weight:700;color:#fff;overflow:hidden;flex-shrink:0}
+.av img{width:100%;height:100%;object-fit:cover}
+main{flex:1;overflow-y:auto;padding:30px 32px 60px}
+.container{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.container.anim{animation:fade .32s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Cards */
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.card-h{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.card-title{font-family:var(--fd);font-size:20px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.card-title svg{width:20px;height:20px;color:var(--p3)}
+.card-sub{color:var(--muted);font-size:13px;margin-top:5px;line-height:1.5}
+.h3{font-size:11.5px;font-weight:700;letter-spacing:.1em;color:var(--p3);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.h3 svg{width:15px;height:15px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.dash-row{grid-template-columns:minmax(0,1.7fr) minmax(0,1fr)}
+.stat{padding:20px;border-radius:var(--r);background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);position:relative;overflow:hidden;transition:.2s}
+.stat:hover{border-color:var(--border2);transform:translateY(-2px)}
+.stat::after{content:"";position:absolute;right:-34px;top:-34px;width:100px;height:100px;border-radius:50%;background:radial-gradient(var(--pglow),transparent 70%);opacity:.55;pointer-events:none}
+.stat .lbl{font-size:11px;letter-spacing:.07em;color:var(--muted);font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.stat .lbl svg{width:15px;height:15px;color:var(--p3)}
+.stat .val{font-family:var(--fd);font-size:25px;font-weight:700;margin-top:10px;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat .foot{font-size:12px;color:var(--dim);margin-top:5px}
+.c-green{color:var(--green)}.c-red{color:var(--red)}.c-amber{color:var(--amber)}.c-p{color:var(--p3)}.c-cyan{color:var(--cyan)}.muted{color:var(--muted)}.dim{color:var(--dim)}
+
+/* Buttons & inputs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:12px;font-weight:600;font-size:13.5px;transition:.18s;white-space:nowrap}
+.btn svg{width:16px;height:16px}
+.btn-p{background:var(--grad);color:#fff;box-shadow:0 8px 22px -8px var(--pglow)}
+.btn-p:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn-g{background:var(--panel3);border:1px solid var(--border2);color:var(--text)}
+.btn-g:hover{border-color:var(--p)}
+.btn-d{background:rgba(251,113,133,.1);color:var(--red);border:1px solid rgba(251,113,133,.28)}
+.btn-d:hover{background:rgba(251,113,133,.2)}
+.btn-sm{padding:7px 12px;font-size:12.5px;border-radius:10px}
+.icon-btn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:.15s;flex-shrink:0}
+.icon-btn svg{width:16px;height:16px}
+.icon-btn:hover{background:var(--panel3);color:var(--text)}
+.icon-btn.del:hover{background:rgba(251,113,133,.14);color:var(--red)}
+.link-btn{color:var(--p3);font-size:12px;font-weight:600}
+.link-btn:hover{text-decoration:underline}
+.input,.select,.textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:11px 14px;outline:none;transition:.15s}
+.input::placeholder,.textarea::placeholder{color:var(--dim)}
+.input:focus,.select:focus,.textarea:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(139,92,246,.2)}
+.select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:36px;background-repeat:no-repeat;background-position:right 12px center;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c4b5fd' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
+select option{background:#130f20;color:var(--text)}
+.textarea{resize:vertical;min-height:90px;line-height:1.5}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.add-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.add-row .input{flex:1;min-width:220px}
+.add-row .select,.add-row .input.sm{width:auto;min-width:0;flex:0 0 auto}
+.search{position:relative;flex:1;min-width:220px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--dim)}
+.search .input{padding-left:40px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.tabs{display:inline-flex;gap:4px;background:var(--bg2);border:1px solid var(--border);padding:4px;border-radius:12px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:600;color:var(--muted);transition:.15s}
+.tab:hover{color:var(--text)}
+.tab.active{background:var(--panel3);color:#fff;box-shadow:inset 0 0 0 1px var(--border2)}
+.tab .n{opacity:.55;margin-left:5px}
+
+/* Lists */
+.list{display:flex;flex-direction:column;gap:8px}
+.item{display:flex;align-items:center;gap:14px;padding:13px 16px;background:var(--panel);border:1px solid var(--border);border-radius:14px;transition:.18s}
+.item:hover{border-color:var(--border2);background:var(--panel2)}
+.item .actions{display:flex;gap:2px;opacity:.4;transition:.15s}
+.item:hover .actions{opacity:1}
+.item.done .txt{text-decoration:line-through;color:var(--dim)}
+.item.done{opacity:.75}
+.txt{flex:1;font-weight:500;word-break:break-word;line-height:1.45;min-width:0}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;align-items:center}
+.check{width:24px;height:24px;border-radius:8px;border:2px solid var(--border2);display:grid;place-items:center;flex-shrink:0;transition:.18s}
+.check svg{width:14px;height:14px;opacity:0;color:#fff;stroke-width:3;transform:scale(.5);transition:.18s}
+.check:hover{border-color:var(--p)}
+.check.on{background:var(--grad);border-color:transparent;box-shadow:0 0 12px var(--pglow)}
+.check.on svg{opacity:1;transform:none}
+.chip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--panel3);color:var(--p3);border:1px solid var(--border2);white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.chip svg{width:12px;height:12px}
+.chip.green{color:var(--green);background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.25)}
+.chip.red{color:var(--red);background:rgba(251,113,133,.08);border-color:rgba(251,113,133,.25)}
+.chip.amber{color:var(--amber);background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.25)}
+.chip.cyan{color:var(--cyan);background:rgba(103,232,249,.08);border-color:rgba(103,232,249,.25)}
+.prio{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.prio.high{background:var(--red);box-shadow:0 0 8px var(--red)}.prio.mid{background:var(--amber)}.prio.low{background:var(--green)}
+.empty{text-align:center;padding:46px 20px;color:var(--dim);border:1px dashed var(--border2);border-radius:var(--r);background:rgba(14,11,24,.5)}
+.empty svg{width:38px;height:38px;color:var(--border2);margin-bottom:10px}
+.empty b{display:block;color:var(--muted);margin-bottom:4px;font-size:15px}
+.bar{height:8px;border-radius:99px;background:var(--bg2);overflow:hidden;border:1px solid var(--border)}
+.bar>i{display:block;height:100%;background:var(--grad);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.ring{--v:0;width:74px;height:74px;border-radius:50%;background:conic-gradient(var(--p2) calc(var(--v)*1%),var(--panel3) 0);display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 30px -8px var(--pglow)}
+.ring::before{content:"";grid-area:1/1;width:58px;height:58px;border-radius:50%;background:var(--panel)}
+.ring span{grid-area:1/1;font-weight:800;font-size:14px;z-index:1;font-family:var(--fd)}
+.ring.lg{width:96px;height:96px}.ring.lg::before{width:76px;height:76px}.ring.lg span{font-size:18px}
+
+/* Profile hero */
+.hero{display:grid;grid-template-columns:auto 1fr minmax(260px,330px);gap:26px;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:-60px;top:-80px;width:280px;height:280px;background:radial-gradient(rgba(147,51,234,.22),transparent 65%);pointer-events:none}
+.avatar-lg{width:108px;height:108px;border-radius:24px;position:relative;cursor:pointer;padding:3px;background:var(--grad);box-shadow:0 14px 34px -10px var(--pglow)}
+.avatar-lg .av{width:100%;height:100%;border-radius:21px;font-size:34px;background:#1a1330}
+.avatar-lg .cam{position:absolute;right:-6px;bottom:-6px;width:32px;height:32px;border-radius:10px;background:var(--panel3);border:1px solid var(--border2);display:grid;place-items:center;color:var(--p3);transition:.15s}
+.avatar-lg:hover .cam{background:var(--p);color:#fff}
+.avatar-lg .cam svg{width:15px;height:15px}
+.hero-body{display:flex;flex-direction:column;gap:9px;min-width:0;position:relative}
+.name-row{display:flex;gap:10px}
+.name-in{font-family:var(--fd);font-size:18px;font-weight:700;padding:9px 14px;max-width:220px}
+.sub-in{font-size:12.5px;color:var(--p3);padding:8px 14px;max-width:450px;background:transparent;border-color:transparent}
+.sub-in:hover{border-color:var(--border)}
+.period{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.period-txt{font-size:13.5px;color:var(--muted)}.period-txt b{color:var(--text)}
+.period-dates{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);font-weight:600}
+.quote{display:flex;gap:14px;align-items:flex-start}
+.quote svg{width:26px;height:26px;color:var(--p);flex-shrink:0}
+.quote p{font-family:var(--fd);font-size:17px;line-height:1.45;font-weight:500}
+.chart-wrap svg{width:100%;height:auto;display:block}
+.chart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:220px;color:var(--dim)}
+.chart-empty svg{width:34px;height:34px;color:var(--border2)}
+.mini-todo{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.mini-todo:last-child{border-bottom:none}
+.mini-todo .check{width:20px;height:20px;border-radius:6px}
+.mini-todo .check svg{width:12px;height:12px}
+
+/* Todos */
+.date-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.date-big{font-family:var(--fd);font-size:22px;font-weight:700;letter-spacing:-.02em}
+.date-big small{display:block;font-family:Inter;font-size:12px;color:var(--p3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.date-pick{width:auto;padding:8px 12px;font-size:12.5px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:18px}
+.wd{padding:10px 6px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);text-align:center;transition:.15s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.wd:not(:disabled):hover{border-color:var(--p)}
+.wd small{font-size:10.5px;color:var(--dim);font-weight:700;text-transform:uppercase}
+.wd b{font-family:var(--fd);font-size:18px}
+.wd i{width:6px;height:6px;border-radius:50%;background:transparent}
+.wd i.some{background:var(--p2)}.wd i.all{background:var(--green);box-shadow:0 0 6px var(--green)}
+.wd.active{background:var(--grad);border-color:transparent;color:#fff}
+.wd.active small{color:rgba(255,255,255,.75)}
+.wd.today:not(.active){border-color:var(--p2)}
+.todo-stats{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.streak{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.22)}
+.streak svg{width:22px;height:22px;color:var(--amber)}
+.streak b{font-family:var(--fd);font-size:20px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin:6px 2px}
+
+/* Milestones */
+.ms-list{display:flex;flex-direction:column;gap:10px;position:relative;padding-left:28px}
+.ms-list::before{content:"";position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--border2),var(--border))}
+.ms{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--panel);border:1px solid var(--border);border-radius:14px;position:relative;transition:.18s}
+.ms:hover{border-color:var(--border2)}
+.ms::before{content:"";position:absolute;left:-25px;width:14px;height:14px;border-radius:50%;background:var(--panel3);border:2px solid var(--border2)}
+.ms.reached{background:linear-gradient(110deg,rgba(124,58,237,.22),var(--panel) 70%);border-color:rgba(139,92,246,.45)}
+.ms.reached::before{background:var(--p2);border-color:var(--p3);box-shadow:0 0 12px var(--p2)}
+.ms.next{border-color:var(--p2);box-shadow:0 0 0 1px var(--p2) inset}
+.ms .amt{font-family:var(--fd);font-weight:700;font-size:17px;min-width:150px}
+.ms .bar{flex:1;height:6px}
+.ms .st{font-size:12px;font-weight:700;min-width:90px;text-align:right}
+
+/* Daily */
+.month-h{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--border)}
+.month-h .t{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--p3);display:flex;align-items:center;gap:10px;letter-spacing:.02em}
+.month-h .t svg{width:18px;height:18px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.cal-h{font-size:10.5px;color:var(--dim);text-align:center;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding-bottom:2px}
+.day{padding:10px 11px;border-radius:12px;background:var(--panel);border:1px solid var(--border);text-align:left;min-height:96px;display:flex;flex-direction:column;gap:2px;transition:.15s;min-width:0}
+.day:hover{border-color:var(--p);transform:translateY(-2px);background:var(--panel2)}
+.day .dn{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:13px}
+.day .dn small{color:var(--dim);font-weight:600;font-size:10.5px}
+.day .dc{font-weight:700;font-size:13px;margin-top:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day .dnet{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day .dplus{margin-top:auto;font-size:11.5px;color:var(--dim);opacity:0;transition:.15s}
+.day:hover .dplus{opacity:1;color:var(--p3)}
+.day.filled{background:linear-gradient(160deg,rgba(124,58,237,.26),var(--panel) 85%);border-color:rgba(139,92,246,.45)}
+.day.today{box-shadow:0 0 0 2px var(--p2)}
+.day.pad{visibility:hidden}
+.net-prev{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px}
+.net-prev div{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.net-prev b{display:block;font-family:var(--fd);font-size:17px;margin-top:4px;text-transform:none;letter-spacing:0}
+
+/* Table */
+.table-wrap{overflow-x:auto;padding:0}
+.table{width:100%;border-collapse:collapse;min-width:820px}
+.table th{font-size:11px;letter-spacing:.08em;color:var(--muted);text-align:left;padding:15px 18px;border-bottom:1px solid var(--border);text-transform:uppercase;font-weight:700}
+.table td{padding:14px 18px;border-bottom:1px solid var(--border);vertical-align:middle}
+.table tr:last-child td{border-bottom:none}
+.table tbody tr{transition:.15s}
+.table tbody tr:hover td{background:rgba(139,92,246,.05)}
+.table .pname{font-weight:600}
+.table .note{color:var(--muted);font-size:12.5px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.table .actions{display:flex;gap:2px;justify-content:flex-end}
+
+/* Books */
+.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.book{display:flex;gap:16px;padding:18px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:var(--r);transition:.2s}
+.book:hover{border-color:var(--border2);transform:translateY(-2px)}
+.cover{width:66px;height:96px;border-radius:5px 10px 10px 5px;flex-shrink:0;display:flex;align-items:flex-end;padding:8px;font-family:var(--fd);font-weight:700;font-size:24px;color:rgba(255,255,255,.92);box-shadow:inset 5px 0 0 rgba(0,0,0,.28),0 12px 22px -10px rgba(0,0,0,.7);position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.18),transparent 45%)}
+.bk-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.bk-top{display:flex;justify-content:space-between;gap:8px}
+.bk-title{font-weight:700;font-size:15px;line-height:1.3;word-break:break-word}
+.bk-author{color:var(--muted);font-size:12.5px;margin-top:2px}
+.bk-top .actions{display:flex;opacity:.45;transition:.15s;height:fit-content}
+.book:hover .bk-top .actions{opacity:1}
+.bk-note{font-size:12.5px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-style:italic}
+.bk-prog{display:flex;justify-content:space-between;font-size:11.5px;color:var(--dim);font-weight:600;margin-bottom:5px}
+.stars{display:flex;gap:2px}
+.stars button{color:var(--border2);padding:1px;transition:.12s}
+.stars button svg{width:17px;height:17px}
+.stars button.on{color:var(--amber)}
+.stars button.on svg{fill:var(--amber)}
+.stars button:hover{transform:scale(1.2)}
+.bk-quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+
+/* Modal */
+.modal-back{position:fixed;inset:0;background:rgba(3,2,8,.74);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal-back.open{display:flex;animation:fade .2s}
+.modal{width:100%;max-width:580px;max-height:92vh;overflow-y:auto;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border2);border-radius:20px;padding:26px;box-shadow:0 30px 90px -20px rgba(124,58,237,.45)}
+.modal-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.modal-h h3{font-family:var(--fd);font-size:20px;font-weight:700}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;font-weight:600;color:var(--muted)}
+.modal-foot{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;flex-wrap:wrap}
+.modal-foot .left{margin-right:auto}
+
+/* Toasts */
+.toasts{position:fixed;bottom:22px;right:22px;display:flex;flex-direction:column;gap:10px;z-index:70;align-items:flex-end}
+.toast{display:flex;align-items:center;gap:12px;background:rgba(28,22,48,.96);border:1px solid var(--border2);padding:12px 14px 12px 16px;border-radius:14px;box-shadow:0 20px 50px -12px rgba(0,0,0,.7);min-width:270px;max-width:400px;animation:slideIn .28s cubic-bezier(.2,.8,.2,1);font-weight:500}
+.toast .ti{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(139,92,246,.2);color:var(--p3)}
+.toast .ti svg{width:14px;height:14px}
+.toast.error .ti{background:rgba(251,113,133,.15);color:var(--red)}
+.toast button{color:#fff;font-weight:700;margin-left:auto;padding:6px 11px;border-radius:9px;background:var(--grad);display:flex;align-items:center;gap:6px;font-size:12.5px}
+.toast button svg{width:13px;height:13px}
+.toast.out{opacity:0;transform:translateX(20px);transition:.3s}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+
+/* Settings */
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.set-row:last-child{border-bottom:none}
+.set-row b{display:block;margin-bottom:3px}
+.set-row p{color:var(--muted);font-size:12.5px;max-width:560px;line-height:1.5}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.kv div{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:11.5px;color:var(--muted);font-weight:600}
+.kv b{display:block;font-family:var(--fd);font-size:18px;color:var(--text);margin-top:3px}
+
+/* Responsive */
+@media(max-width:1180px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:auto 1fr}.hero .period{grid-column:1/-1}.dash-row{grid-template-columns:1fr}}
+@media(max-width:880px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);transition:transform .25s}
+  .sidebar.open{transform:none}
+  .scrim.open{display:block;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:35}
+  .menu-btn{display:grid!important}
+  .top-stats .ts{display:none}.top-user{border-left:none;padding-left:0}
+  main{padding:18px 16px 60px}.topbar{padding:0 14px}
+  .g3,.g2{grid-template-columns:1fr}
+  .cal{grid-template-columns:repeat(2,minmax(0,1fr))}.cal-h,.day.pad{display:none}
+  .form{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;justify-items:start}
+  .name-row{flex-direction:column}.name-in{max-width:none}
+  .kv{grid-template-columns:repeat(2,1fr)}
+  .ms .bar{display:none}.ms .amt{min-width:0;flex:1}
+  .week{gap:4px}.wd{padding:8px 2px}
+  .books{grid-template-columns:1fr}
+}
+@media(max-width:520px){.g4{grid-template-columns:1fr}.toasts{left:12px;right:12px}.toast{min-width:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="scrim" id="scrim" data-act="menu"></div>
+  <div class="main-wrap">
+    <header class="topbar" id="topbar"></header>
+    <main id="main"></main>
+  </div>
+</div>
+<div class="modal-back" id="modalBack"><div class="modal" id="modal"></div></div>
+<div class="toasts" id="toasts"></div>
+<input type="file" id="photoInput" accept="image/*" hidden>
+<input type="file" id="importInput" accept="application/json,.json" hidden>
+
+<script>
+/* =========================================================
+   EVERCORE OS 2026-2027 · Purple Edition
+   Tüm veriler tarayıcının yerel deposunda (localStorage) saklanır.
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const KEY = 'evercore_os_purple_v1', UIKEY = 'evercore_os_purple_ui_v1';
+const START = new Date(2026, 10, 16), END = new Date(2027, 11, 31);
+const MONTHS = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const DSHORT = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
+const DLONG = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+const CATS = ['E-Ticaret','Kişisel Gelişim','Finans','Sağlık & Spor','Okuma','İş','Diğer'];
+const BOOK_CATS = ['Kişisel Gelişim','İş & Girişimcilik','Pazarlama & Satış','Finans & Yatırım','Psikoloji','Biyografi','Roman / Edebiyat','Diğer'];
+const PRIO = {high:'Yüksek', mid:'Orta', low:'Düşük'};
+const PRIO_ORDER = {high:0, mid:1, low:2};
+const BOOK_ST = {reading:'Okunuyor', toread:'Okunacak', done:'Okundu'};
+const PROD_ST = {testing:'Test Ediliyor', winner:'Kazanan', loser:'Kaybeden', paused:'Beklemede'};
+const PROD_CLS = {testing:'', winner:'green', loser:'red', paused:'amber'};
+const DEFAULT_MS = [100000,250000,500000,1000000,2000000,3000000,4000000,5000000,6000000,7500000,9000000,10000000,15000000,17500000,20000000];
+const QUOTES = [
+  'Küçük adımlar her gün atıldığında büyük sonuçlara dönüşür.',
+  'Bugün test ettiğin ürün, yarının kazananı olabilir.',
+  'Disiplin, motivasyonun bittiği yerde başlar.',
+  'Ölçmediğin şeyi büyütemezsin. Verini gir, yolunu gör.',
+  'Her okunan sayfa, gelecekteki kararlarına yapılmış bir yatırımdır.',
+  'Kaybeden ürün yoktur; yalnızca veri toplayan testler vardır.',
+  'Odaklan, uygula, ölç, tekrarla.',
+  'Bugünün yapılacaklar listesi, yarının başarı hikâyesidir.',
+  'Büyük hedefler, sıkıcı günlük rutinlerin içinde saklıdır.',
+  'Hız değil istikrar kazandırır. Bugün de zinciri kırma.',
+];
+
+/* ---------- Helpers ---------- */
+const pad = n => String(n).padStart(2,'0');
+const key = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const fromKey = k => { const [a,b,c] = k.split('-').map(Number); return new Date(a, b-1, c); };
+const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const today0 = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); };
+const clampD = d => d < START ? new Date(START) : d > END ? new Date(END) : d;
+const dayDiff = (a,b) => Math.round((b - a) / 864e5);
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = v => { const n = parseFloat(String(v ?? '').replace(/\s/g,'').replace(',','.')); return isFinite(n) ? n : 0; };
+const nf = new Intl.NumberFormat('tr-TR', {maximumFractionDigits:2});
+const money = n => nf.format(Math.round(n*100)/100) + ' TL';
+const short = n => { const a = Math.abs(n); if (a >= 1e6) return nf.format(+(n/1e6).toFixed(2)) + 'M'; if (a >= 1e3) return nf.format(+(n/1e3).toFixed(1)) + 'B'; return nf.format(Math.round(n)); };
+const dLabel = d => `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+const dLong = d => `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}, ${DLONG[d.getDay()]}`;
+const inRange = d => d >= START && d <= END;
+function months(){ const r = []; let y = START.getFullYear(), m = START.getMonth(); while (y < END.getFullYear() || (y === END.getFullYear() && m <= END.getMonth())) { r.push({y, m}); m++; if (m > 11) { m = 0; y++; } } return r; }
+const opts = (arr, sel) => arr.map(a => { const [v,l] = Array.isArray(a) ? a : [a,a]; return `<option value="${esc(v)}" ${v===sel?'selected':''}>${esc(l)}</option>`; }).join('');
+
+/* ---------- Icons ---------- */
+const svg = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const I = {
+  user: svg('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>'),
+  listcheck: svg('<path d="M11 6h10M11 12h10M11 18h10"/><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"/>'),
+  target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
+  trend: svg('<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>'),
+  calendar: svg('<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+  box: svg('<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>'),
+  book: svg('<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>'),
+  settings: svg('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/>'),
+  plus: svg('<path d="M12 5v14M5 12h14"/>'),
+  trash: svg('<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/>'),
+  edit: svg('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'),
+  x: svg('<path d="M18 6 6 18M6 6l12 12"/>'),
+  check: svg('<path d="M20 6 9 17l-5-5"/>'),
+  left: svg('<path d="m15 18-6-6 6-6"/>'),
+  right: svg('<path d="m9 18 6-6-6-6"/>'),
+  search: svg('<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>'),
+  star: svg('<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>'),
+  download: svg('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>'),
+  upload: svg('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>'),
+  menu: svg('<path d="M3 6h18M3 12h18M3 18h18"/>'),
+  camera: svg('<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>'),
+  flame: svg('<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3.3.3 1.6 1.3 2.8 2.5 2.8z"/>'),
+  undo: svg('<path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/>'),
+  wallet: svg('<path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><circle cx="16" cy="14" r="1.5"/>'),
+  cart: svg('<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L22 7H6"/>'),
+  mega: svg('<path d="m3 11 15-6v14L3 13z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'),
+  percent: svg('<path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>'),
+  layers: svg('<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>'),
+  award: svg('<circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/>'),
+  link: svg('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>'),
+  arrow: svg('<path d="M5 12h14M12 5l7 7-7 7"/>'),
+  quote: svg('<path d="M3 21c3 0 7-1 7-8V5H3v7h4c0 4-2 6-4 6zM14 21c3 0 7-1 7-8V5h-7v7h4c0 4-2 6-4 6z"/>'),
+  clock: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  pulse: svg('<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'),
+};
+
+/* ---------- State ---------- */
+function defaults(){
+  return { v:1, profile:{first:'Sohrab', last:'Genç', subtitle:'Girişimci İşletim Sistemi · Kişisel Panel', photo:''},
+    goals:[], milestones:[...DEFAULT_MS], days:{}, products:[], books:[], readingGoal:24, todos:{} };
+}
+function load(){
+  try { const raw = localStorage.getItem(KEY); if (raw) { const d = JSON.parse(raw); const base = defaults(); return {...base, ...d, profile:{...base.profile, ...(d.profile||{})}}; } } catch(e){}
+  return defaults();
+}
+let S = load();
+const startDefault = key(clampD(today0()));
+let UI = {view:'profile', todoDate:startDefault, dailyMonth:'', goalFilter:'all', prodFilter:'all', prodSearch:'', bookFilter:'all', bookSearch:''};
+try { Object.assign(UI, JSON.parse(localStorage.getItem(UIKEY) || '{}')); } catch(e){}
+if (!inRange(fromKey(UI.todoDate || startDefault))) UI.todoDate = startDefault;
+const saveUI = () => { try { localStorage.setItem(UIKEY, JSON.stringify(UI)); } catch(e){} };
+
+let flashT;
+function save(){
+  try { localStorage.setItem(KEY, JSON.stringify(S)); }
+  catch(e){ toast('Kaydedilemedi! Depolama alanı dolu olabilir.', 'error'); return; }
+  const b = $('#savedBadge'); if (b) { b.textContent = 'Kaydedildi ✓'; b.classList.add('flash'); clearTimeout(flashT); flashT = setTimeout(() => { b.classList.remove('flash'); b.textContent = 'Aktif'; }, 1200); }
+}
+function commit(msg){ save(); render(); if (msg) toast(msg); }
+function withUndo(msg, fn){
+  const snap = JSON.stringify(S); fn(); save(); render();
+  toast(msg, 'info', {label:'Geri Al', fn:() => { S = JSON.parse(snap); save(); render(); toast('Geri alındı'); }});
+}
+
+/* ---------- Calculations ---------- */
+function totals(){
+  let ciro=0, reklam=0, maliyet=0, siparis=0, active=0;
+  for (const k in S.days) { const d = S.days[k]; ciro += +d.ciro||0; reklam += +d.reklam||0; maliyet += +d.maliyet||0; siparis += +d.siparis||0; if ((+d.ciro||0) > 0) active++; }
+  const net = ciro - reklam - maliyet;
+  return {ciro, reklam, maliyet, siparis, active, net, margin: ciro ? net/ciro*100 : 0, avg: active ? ciro/active : 0, basket: siparis ? ciro/siparis : 0, roas: reklam ? ciro/reklam : 0};
+}
+function msInfo(c){
+  const ms = [...S.milestones].sort((a,b) => a-b);
+  let cur = 0, next = null;
+  for (const m of ms) { if (m <= c) cur = m; else { next = m; break; } }
+  const pct = next ? Math.min(100, Math.max(0, (c - cur) / (next - cur) * 100)) : 100;
+  return {cur, next, pct, left: next ? next - c : 0, reached: ms.filter(m => m <= c).length, total: ms.length};
+}
+function period(){
+  const now = today0(), total = dayDiff(START, END) + 1;
+  if (now < START) return {state:'before', left: dayDiff(now, START), total, pct:0};
+  if (now > END) return {state:'after', total, pct:100};
+  const el = dayDiff(START, now) + 1; return {state:'in', elapsed:el, left: total - el, total, pct: el/total*100};
+}
+const goalStats = () => { const t = S.goals.length, d = S.goals.filter(g => g.done).length; return {t, d, pct: t ? d/t*100 : 0}; };
+function bookStats(){
+  const b = S.books; let pages = 0;
+  b.forEach(x => { pages += x.status === 'done' ? (+x.pages || +x.current || 0) : (+x.current || 0); });
+  return {t:b.length, done:b.filter(x=>x.status==='done').length, reading:b.filter(x=>x.status==='reading').length, toread:b.filter(x=>x.status==='toread').length, pages};
+}
+function todoStats(k){ const l = S.todos[k] || []; const d = l.filter(x => x.done).length; return {t:l.length, d, pct: l.length ? d/l.length*100 : 0}; }
+function streak(){
+  let d = clampD(today0()); const ok = k => { const l = S.todos[k] || []; return l.length && l.every(t => t.done); };
+  if (!ok(key(d))) d = addDays(d, -1);
+  let n = 0; while (d >= START && ok(key(d))) { n++; d = addDays(d, -1); } return n;
+}
+function monthly(){
+  return months().map(({y,m}) => {
+    let c = 0, n = 0, o = 0;
+    for (const k in S.days) { const d = fromKey(k); if (d.getFullYear() === y && d.getMonth() === m) { const x = S.days[k]; c += +x.ciro||0; n += (+x.ciro||0) - (+x.reklam||0) - (+x.maliyet||0); o += +x.siparis||0; } }
+    return {y, m, c, n, o};
+  });
+}
+
+/* ---------- UI helpers ---------- */
+const avatar = size => `<div class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.38)}px">${S.profile.photo ? `<img src="${S.profile.photo}" alt="">` : esc(((S.profile.first||'?')[0] + (S.profile.last||'')[0] || '').toUpperCase())}</div>`;
+const stat = (lbl, val, cls, foot, icon) => `<div class="stat"><div class="lbl">${I[icon]||''}${lbl}</div><div class="val ${cls||''}" title="${esc(String(val).replace(/<[^>]+>/g,''))}">${val}</div>${foot ? `<div class="foot">${foot}</div>` : ''}</div>`;
+const ring = (pct, lg) => `<div class="ring ${lg?'lg':''}" style="--v:${Math.round(pct)}"><span>%${Math.round(pct)}</span></div>`;
+const empty = (icon, title, sub) => `<div class="empty">${I[icon]}<b>${title}</b>${sub||''}</div>`;
+function coverGrad(t){ let h = 0; for (const c of String(t)) h = (h*31 + c.charCodeAt(0)) % 360; const hue = 255 + (h % 70); return `linear-gradient(160deg,hsl(${hue} 72% 52%),hsl(${hue+25} 70% 24%))`; }
+function stars(r, id){ let s = '<div class="stars">'; for (let i=1;i<=5;i++) s += `<button class="${i<=r?'on':''}" data-act="rateBook" data-id="${id}" data-v="${i}" title="${i} yıldız">${I.star}</button>`; return s + '</div>'; }
+function shake(el){ el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); el.focus(); }
+
+/* ---------- Navigation ---------- */
+const NAV = [
+  {sec:'Genel'},
+  {id:'profile', label:'Profilim', icon:'user', title:'Profilim & Dashboard'},
+  {id:'todos', label:'Günlük Hedefler', icon:'listcheck', title:'Günlük Hedefler & Yapılacaklar'},
+  {id:'goals', label:'Stratejik Hedefler', icon:'target', title:'Stratejik Hedefler'},
+  {sec:'E-Ticaret'},
+  {id:'revenue', label:'Ciro Hedefi', icon:'trend', title:'Ciro Hedefi'},
+  {id:'daily', label:'Günlük Ciro Takibi', icon:'calendar', title:'Günlük Ciro Takibi'},
+  {id:'products', label:'Test Edilen Ürünler', icon:'box', title:'Test Edilen Ürünler'},
+  {sec:'Kişisel Gelişim'},
+  {id:'books', label:'Okuduğum Kitaplar', icon:'book', title:'Okuduğum Kitaplar'},
+  {sec:'Sistem'},
+  {id:'settings', label:'Yedekleme & Ayarlar', icon:'settings', title:'Yedekleme & Ayarlar'},
+];
+function badgeFor(id){
+  if (id === 'todos') { const s = todoStats(key(clampD(today0()))); const p = s.t - s.d; return p > 0 ? p : ''; }
+  if (id === 'goals') { const g = goalStats(); return g.t ? `${g.d}/${g.t}` : ''; }
+  if (id === 'books') { const b = bookStats(); return b.reading || ''; }
+  if (id === 'products') return S.products.length || '';
+  return '';
+}
+function renderShell(){
+  $('#sidebar').innerHTML = `
+    <div class="brand"><div class="brand-logo">${I.layers}</div><div><h1>OS 2026-2027</h1><small>PURPLE EDITION</small></div></div>
+    <nav class="nav">${NAV.map(n => n.sec ? `<div class="nav-label">${n.sec}</div>` :
+      `<button class="nav-btn ${UI.view===n.id?'active':''}" data-act="nav" data-v="${n.id}">${I[n.icon]}<span>${n.label}</span>${badgeFor(n.id) !== '' ? `<span class="badge">${badgeFor(n.id)}</span>` : ''}</button>`).join('')}</nav>
+    <div class="side-foot"><div class="row"><span><span class="dot"></span>Yerel Veritabanı</span><span class="saved" id="savedBadge">Aktif</span></div>
+    Tüm veriler bu tarayıcıda otomatik kaydedilir. Düzenli yedek almayı unutmayın.</div>`;
+  const t = totals(), nav = NAV.find(n => n.id === UI.view);
+  $('#topbar').innerHTML = `
+    <button class="icon-btn menu-btn" data-act="menu">${I.menu}</button>
+    <h2>${nav ? nav.title : ''}</h2>
+    <div class="top-stats">
+      <span class="ts">Toplam Ciro:<b>${money(t.ciro)}</b></span>
+      <span class="ts">Net Durum:<b class="${t.net>=0?'c-green':'c-red'}">${money(t.net)}</b></span>
+      <div class="top-user" data-act="nav" data-v="profile">${avatar(34)}<span class="ts">${esc((S.profile.first+' '+S.profile.last).trim() || 'Profil')}</span></div>
+    </div>`;
+}
+
+/* =========================================================
+   VIEWS
+   ========================================================= */
+const V = {};
+
+/* ---------- PROFİL & DASHBOARD ---------- */
+V.profile = () => {
+  const t = totals(), p = period(), gs = goalStats(), bs = bookStats(), mi = msInfo(t.ciro);
+  const tk = key(clampD(today0())), ts = todoStats(tk);
+  const tl = (S.todos[tk] || []).slice().sort((a,b) => (a.done-b.done) || (PRIO_ORDER[a.prio]-PRIO_ORDER[b.prio]));
+  const reading = S.books.filter(b => b.status === 'reading').slice(0,3);
+  const winners = S.products.filter(x => x.result === 'winner').length;
+  const h = new Date().getHours(); const greet = h < 6 ? 'İyi geceler' : h < 12 ? 'Günaydın' : h < 18 ? 'İyi günler' : 'İyi akşamlar';
+  const pTxt = p.state === 'before' ? `Dönemin başlamasına <b>${p.left} gün</b> kaldı` : p.state === 'after' ? '<b>Dönem tamamlandı</b> 🎉' : `Dönemin <b>${p.elapsed}.</b> günü · Bitişe <b>${p.left} gün</b>`;
+  const quote = QUOTES[Math.floor(today0().getTime()/864e5) % QUOTES.length];
+  const tdLabel = tk === key(today0()) ? 'Bugün' : dLabel(fromKey(tk));
+  return `<div class="container">
+    <div class="card hero">
+      <div class="avatar-lg" data-act="pickPhoto" title="Fotoğrafı değiştir">${avatar(102)}<span class="cam">${I.camera}</span></div>
+      <div class="hero-body">
+        <div class="muted" style="font-size:13px">${greet}, <b style="color:var(--text)">${esc(S.profile.first || 'Girişimci')}</b> 👋</div>
+        <div class="name-row">
+          <input class="input name-in" id="pfFirst" data-input="pfFirst" value="${esc(S.profile.first)}" placeholder="Ad">
+          <input class="input name-in" id="pfLast" data-input="pfLast" value="${esc(S.profile.last)}" placeholder="Soyad">
+        </div>
+        <input class="input sub-in" id="pfSub" data-input="pfSub" value="${esc(S.profile.subtitle)}" placeholder="Kısa açıklama veya mottonuzu yazın...">
+        ${S.profile.photo ? `<div><button class="link-btn" data-act="removePhoto">Fotoğrafı kaldır</button></div>` : ''}
+      </div>
+      <div class="period">
+        <div class="h3">${I.clock} 2026 – 2027 Dönemi</div>
+        <div class="period-txt">${pTxt}</div>
+        <div class="bar"><i style="width:${p.pct}%"></i></div>
+        <div class="period-dates"><span>16 Kas 2026</span><span>%${p.pct.toFixed(1)}</span><span>31 Ara 2027</span></div>
+      </div>
+    </div>
+
+    <div class="grid g4">
+      ${stat('Toplam Ciro', money(t.ciro), '', `${t.active} aktif satış günü`, 'wallet')}
+      ${stat('Net Kâr / Zarar', money(t.net), t.net >= 0 ? 'c-green' : 'c-red', `Maliyet: ${money(t.maliyet)}`, 'pulse')}
+      ${stat('Toplam Reklam Harcaması', money(t.reklam), 'c-amber', `ROAS: ${t.roas ? t.roas.toFixed(2) : '—'}`, 'mega')}
+      ${stat('Genel Kârlılık Oranı', '%' + nf.format(+t.margin.toFixed(1)), 'c-cyan', 'Net kâr / ciro', 'percent')}
+      ${stat('Toplam Sipariş', nf.format(t.siparis) + ' Adet', '', `Ort. sepet: ${money(t.basket)}`, 'cart')}
+      ${stat('Ortalama Günlük Ciro', money(t.avg), '', 'Veri girilen günlere göre', 'trend')}
+      ${stat('Mevcut Ciro Seviyesi', money(mi.cur), 'c-p', mi.next ? `Sonraki: ${money(mi.next)}` : 'Tüm basamaklar tamam!', 'award')}
+      ${stat('Stratejik Hedefler', `${gs.d} / ${gs.t} <span class="dim" style="font-size:16px">(%${Math.round(gs.pct)})</span>`, '', 'Tamamlanan hedefler', 'target')}
+      ${stat('Okunan Kitaplar', `${bs.done} <span class="dim" style="font-size:16px">/ ${S.readingGoal}</span>`, 'c-p', `${nf.format(bs.pages)} sayfa okundu`, 'book')}
+      ${stat(`${tdLabel} · Görevler`, `${ts.d} / ${ts.t}`, ts.t && ts.d === ts.t ? 'c-green' : '', `🔥 ${streak()} günlük seri`, 'listcheck')}
+      ${stat('Test Edilen Ürün', S.products.length, '', `${winners} kazanan ürün`, 'box')}
+      ${stat('Basamak İlerlemesi', `${mi.reached} / ${mi.total}`, '', mi.next ? `Kalan: ${money(mi.left)}` : 'Zirvedesin 🚀', 'layers')}
+    </div>
+
+    <div class="grid dash-row">
+      <div class="card">
+        <div class="card-h"><div><div class="h3">${I.trend} Aylık Ciro Grafiği</div><div class="card-sub">Kasım 2026 – Aralık 2027 arası aylık ciro</div></div>
+          <button class="btn btn-sm btn-g" data-act="nav" data-v="daily">Veri gir ${I.arrow}</button></div>
+        <div class="chart-wrap" style="margin-top:14px">${chart()}</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column">
+        <div class="card-h"><div class="h3">${I.listcheck} ${tdLabel} Yapılacaklar</div><span class="chip">${ts.d}/${ts.t}</span></div>
+        <div class="bar" style="margin:14px 0 6px"><i style="width:${ts.pct}%"></i></div>
+        <div style="flex:1;margin-top:4px">${tl.length ? tl.slice(0,6).map(x => `
+          <div class="mini-todo"><button class="check ${x.done?'on':''}" data-act="todoToggle" data-k="${tk}" data-id="${x.id}">${I.check}</button>
+          <span class="prio ${x.prio}"></span><span class="txt" style="font-size:13px;${x.done?'text-decoration:line-through;color:var(--dim)':''}">${esc(x.text)}</span></div>`).join('') +
+          (tl.length > 6 ? `<div class="dim" style="font-size:12px;padding-top:8px">+${tl.length-6} görev daha</div>` : '')
+          : `<div class="dim" style="font-size:13px;padding:14px 0">Bu gün için henüz görev yok.</div>`}</div>
+        <div class="add-row" style="margin-top:12px"><input class="input" id="dashTodo" data-enter="dashTodo" placeholder="Hızlı görev ekle + Enter" style="min-width:0"><button class="btn btn-p btn-sm" data-act="dashTodo">${I.plus}</button></div>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h"><div class="h3">${I.book} Şu An Okuduklarım</div><button class="link-btn" data-act="nav" data-v="books">Tümü →</button></div>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:14px">${reading.length ? reading.map(b => {
+          const pc = +b.pages ? Math.min(100, (+b.current||0) / +b.pages * 100) : 0;
+          return `<div style="display:flex;gap:12px;align-items:center"><div class="cover" style="width:36px;height:52px;font-size:14px;padding:5px;background:${coverGrad(b.title)}">${esc((b.title||'?')[0].toUpperCase())}</div>
+          <div style="flex:1;min-width:0"><div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(b.title)}</div><div class="dim" style="font-size:12px;margin:2px 0 6px">${esc(b.author||'')} ${+b.pages ? `· %${Math.round(pc)}` : ''}</div><div class="bar" style="height:6px"><i style="width:${pc}%"></i></div></div></div>`; }).join('')
+          : `<div class="dim" style="font-size:13px">Şu an okunan kitap yok. <button class="link-btn" data-act="addBook">Kitap ekle</button></div>`}</div>
+      </div>
+      <div class="card quote" style="align-items:center">${I.quote}<div><p>${quote}</p><div class="dim" style="font-size:12px;margin-top:8px">Günün sözü · EVERCORE</div></div></div>
+    </div>
+  </div>`;
+};
+
+function chart(){
+  const data = monthly(), max = Math.max(0, ...data.map(d => d.c));
+  if (!max) return `<div class="chart-empty">${I.trend}<div>Henüz ciro verisi girilmedi</div><button class="btn btn-sm btn-g" data-act="nav" data-v="daily">Günlük Ciro Takibi'ne git</button></div>`;
+  const W = 720, H = 230, pt = 26, pb = 36, bw = W / data.length; const cur = today0();
+  let s = `<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c084fc"/><stop offset="1" stop-color="#6d28d9"/></linearGradient></defs>`;
+  for (let i = 0; i <= 3; i++) { const y = pt + (H-pt-pb) * i/3; s += `<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="#241c3b" stroke-dasharray="3 5"/>`; }
+  data.forEach((d, i) => {
+    const h = d.c / max * (H - pt - pb), x = i*bw + bw*.2, w = bw*.6, y = H - pb - h;
+    const isCur = d.y === cur.getFullYear() && d.m === cur.getMonth();
+    s += `<g><title>${MONTHS[d.m]} ${d.y}: ${money(d.c)} ciro · Net ${money(d.n)} · ${d.o} sipariş</title>
+      <rect x="${x}" y="${H-pb-(H-pt-pb)}" width="${w}" height="${H-pt-pb}" rx="6" fill="#ffffff" opacity="0.02"/>
+      ${d.c ? `<rect x="${x}" y="${y}" width="${w}" height="${Math.max(h,2)}" rx="6" fill="url(#gb)"/>
+      <text x="${x+w/2}" y="${y-7}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#e9e3ff" font-family="Inter">${short(d.c)}</text>` : ''}
+      <text x="${x+w/2}" y="${H-pb+17}" text-anchor="middle" font-size="11" font-weight="${isCur?800:600}" fill="${isCur?'#c4b5fd':'#6c6393'}" font-family="Inter">${MONTHS[d.m].slice(0,3)}</text>
+      <text x="${x+w/2}" y="${H-pb+30}" text-anchor="middle" font-size="9" fill="#4d4570" font-family="Inter">${String(d.y).slice(2)}</text></g>`;
+  });
+  return s + '</svg>';
+}
+
+/* ---------- GÜNLÜK HEDEFLER / YAPILACAKLAR ---------- */
+V.todos = () => {
+  const k = UI.todoDate, d = fromKey(k), list = S.todos[k] || [], st = todoStats(k), isToday = k === key(today0());
+  const pending = list.filter(x => !x.done).sort((a,b) => PRIO_ORDER[a.prio] - PRIO_ORDER[b.prio]);
+  const done = list.filter(x => x.done);
+  const off = (d.getDay() + 6) % 7, ws = addDays(d, -off);
+  let week = '';
+  for (let i = 0; i < 7; i++) {
+    const wd = addDays(ws, i), wk = key(wd), s = todoStats(wk);
+    week += `<button class="wd ${wk===k?'active':''} ${wk===key(today0())?'today':''}" data-act="todoGo" data-k="${wk}" ${inRange(wd)?'':'disabled'}>
+      <small>${DSHORT[wd.getDay()]}</small><b>${wd.getDate()}</b><i class="${s.t ? (s.d===s.t ? 'all' : 'some') : ''}"></i></button>`;
+  }
+  const item = x => `<div class="item ${x.done?'done':''}">
+    <button class="check ${x.done?'on':''}" data-act="todoToggle" data-k="${k}" data-id="${x.id}">${I.check}</button>
+    <span class="prio ${x.prio}" title="Öncelik: ${PRIO[x.prio]}"></span>
+    <div class="txt">${esc(x.text)}<div class="meta"><span class="chip">${esc(x.cat)}</span>${x.carried ? '<span class="chip amber">Önceki günden</span>' : ''}</div></div>
+    <div class="actions"><button class="icon-btn" data-act="todoEdit" data-k="${k}" data-id="${x.id}" title="Düzenle">${I.edit}</button><button class="icon-btn del" data-act="todoDel" data-k="${k}" data-id="${x.id}" title="Sil">${I.trash}</button></div></div>`;
+  return `<div class="container">
+    <div class="card">
+      <div class="card-h">
+        <div class="date-nav">
+          <button class="icon-btn" data-act="todoShift" data-n="-1" ${fromKey(k) <= START ? 'disabled' : ''}>${I.left}</button>
+          <div class="date-big"><small>${isToday ? 'Bugün' : DLONG[d.getDay()]}</small>${dLabel(d)}</div>
+          <button class="icon-btn" data-act="todoShift" data-n="1" ${fromKey(k) >= END ? 'disabled' : ''}>${I.right}</button>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="btn btn-sm btn-g" data-act="todoToday">Bugüne git</button>
+          <input type="date" class="input date-pick" id="todoPick" data-change="todoPick" value="${k}" min="${key(START)}" max="${key(END)}">
+        </div>
+      </div>
+      <div class="week">${week}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">
+        <div class="todo-stats">${ring(st.pct, true)}
+          <div><div class="card-title">Günlük İlerleme</div><div class="card-sub">${st.t ? `${st.t} görevden <b style="color:var(--text)">${st.d}</b> tanesi tamamlandı${st.d===st.t?' — harika iş! 🎉':''}` : 'Bugünü planlamaya başla: ilk görevini ekle.'}</div></div>
+        </div>
+        <div class="streak">${I.flame}<div><b>${streak()}</b> <span class="muted" style="font-size:12px">günlük seri</span><div class="dim" style="font-size:11px">Tüm görevleri bitirdiğin ardışık günler</div></div></div>
+      </div>
+      <div class="add-row" style="margin-top:20px">
+        <input class="input" id="todoIn" data-enter="addTodo" placeholder="Yeni görev yazın ve Enter'a basın...">
+        <select class="select" id="todoCat">${opts(CATS, UI.lastCat || 'E-Ticaret')}</select>
+        <select class="select" id="todoPrio">${opts([['high','🔴 Yüksek'],['mid','🟡 Orta'],['low','🟢 Düşük']], UI.lastPrio || 'mid')}</select>
+        <button class="btn btn-p" data-act="addTodo">${I.plus} Ekle</button>
+      </div>
+    </div>
+
+    ${list.length ? `
+      ${pending.length ? `<div class="sec-label">Yapılacak (${pending.length})</div><div class="list">${pending.map(item).join('')}</div>` : ''}
+      ${done.length ? `<div class="sec-label">Tamamlanan (${done.length})</div><div class="list">${done.map(item).join('')}</div>` : ''}
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        ${pending.length && fromKey(k) < END ? `<button class="btn btn-sm btn-g" data-act="moveUndone">${I.arrow} Tamamlanmayanları yarına taşı</button>` : ''}
+        ${done.length ? `<button class="btn btn-sm btn-d" data-act="clearDone">${I.trash} Tamamlananları temizle</button>` : ''}
+      </div>`
+    : empty('listcheck', 'Bu gün için görev yok', 'Yukarıdan istediğin kadar görev ekleyebilirsin.')}
+  </div>`;
+};
+
+/* ---------- STRATEJİK HEDEFLER ---------- */
+V.goals = () => {
+  const gs = goalStats(), f = UI.goalFilter;
+  let list = S.goals; if (f === 'active') list = list.filter(g => !g.done); if (f === 'done') list = list.filter(g => g.done);
+  const now = today0();
+  const dueChip = g => { if (!g.due) return ''; const n = dayDiff(now, fromKey(g.due)); if (g.done) return `<span class="chip">${I.calendar}${dLabel(fromKey(g.due))}</span>`;
+    return `<span class="chip ${n<0?'red':n<=7?'amber':''}">${I.calendar}${n<0 ? `${-n} gün gecikti` : n===0 ? 'Bugün son gün' : `${n} gün kaldı`}</span>`; };
+  return `<div class="container">
+    <div class="card"><div class="card-h">
+      <div><div class="card-title">Stratejik Hedef Listesi</div><div class="card-sub">Yıl boyunca başarmak istediğiniz tüm kişisel ve ticari hedefleri yönetin.</div></div>
+      <div style="display:flex;align-items:center;gap:16px"><div style="text-align:right"><div class="h3" style="justify-content:flex-end">Tamamlanma Oranı</div><div style="font-family:var(--fd);font-size:24px;font-weight:700">${gs.d} / ${gs.t}</div></div>${ring(gs.pct)}</div>
+    </div></div>
+    <div class="card"><div class="add-row">
+      <input class="input" id="goalIn" data-enter="addGoal" placeholder="Yeni bir hedef yazın ve Enter'a basın...">
+      <select class="select" id="goalCat">${opts(CATS, UI.lastGoalCat || 'E-Ticaret')}</select>
+      <input type="date" class="input sm" id="goalDue" title="Hedef tarihi (isteğe bağlı)" min="${key(START)}" max="${key(END)}">
+      <button class="btn btn-p" data-act="addGoal">${I.plus} Ekle</button>
+    </div></div>
+    <div class="toolbar"><div class="tabs">
+      ${[['all','Tümü',S.goals.length],['active','Aktif',gs.t-gs.d],['done','Tamamlanan',gs.d]].map(([v,l,n]) => `<button class="tab ${f===v?'active':''}" data-act="goalFilter" data-f="${v}">${l}<span class="n">${n}</span></button>`).join('')}
+    </div></div>
+    ${list.length ? `<div class="list">${list.map(g => `<div class="item ${g.done?'done':''}">
+      <button class="check ${g.done?'on':''}" data-act="goalToggle" data-id="${g.id}">${I.check}</button>
+      <div class="txt">${esc(g.text)}<div class="meta"><span class="chip">${esc(g.cat||'Diğer')}</span>${dueChip(g)}${g.done && g.doneAt ? `<span class="chip green">${I.check}${dLabel(new Date(g.doneAt))}</span>` : ''}</div></div>
+      <div class="actions"><button class="icon-btn" data-act="goalEdit" data-id="${g.id}" title="Düzenle">${I.edit}</button><button class="icon-btn del" data-act="goalDel" data-id="${g.id}" title="Sil">${I.trash}</button></div>
+    </div>`).join('')}</div>` : empty('target', f==='all' ? 'Henüz stratejik hedef yok' : 'Bu filtrede hedef yok', f==='all' ? 'Büyük düşün: yukarıdan ilk hedefini ekle.' : '')}
+  </div>`;
+};
+
+/* ---------- CİRO HEDEFİ ---------- */
+V.revenue = () => {
+  const t = totals(), mi = msInfo(t.ciro), ms = [...S.milestones].sort((a,b) => b-a);
+  return `<div class="container">
+    <div class="card"><div class="card-title">Ciro Basamakları (Milestones)</div>
+      <div class="card-sub">Günlük girilen ciro verileriniz otomatik toplanır, ulaşılan basamaklar mor renkle aktif hale gelir.</div></div>
+    <div class="grid g4">
+      ${stat('Toplam Ciro', money(t.ciro), '', '', 'wallet')}
+      ${stat('Mevcut Seviye', money(mi.cur), 'c-p', `${mi.reached} / ${mi.total} basamak`, 'award')}
+      ${stat('Sonraki Basamak', mi.next ? money(mi.next) : '—', '', '', 'target')}
+      ${stat('Kalan Tutar', mi.next ? money(mi.left) : 'Tamamlandı 🎉', 'c-amber', '', 'trend')}
+    </div>
+    ${mi.next ? `<div class="card"><div class="card-h"><div class="h3">${I.trend} Sonraki basamağa ilerleme</div><b style="font-family:var(--fd);font-size:18px">%${mi.pct.toFixed(1)}</b></div>
+      <div class="bar" style="height:12px;margin-top:14px"><i style="width:${mi.pct}%"></i></div>
+      <div class="period-dates" style="margin-top:8px"><span>${money(mi.cur)}</span><span>${money(mi.next)}</span></div></div>` : ''}
+    <div class="card"><div class="add-row">
+      <input class="input" type="number" min="0" step="any" inputmode="decimal" id="msIn" data-enter="addMs" placeholder="Yeni basamak tutarı (örn. 12500000)">
+      <button class="btn btn-p" data-act="addMs">${I.plus} Basamak Ekle</button>
+      <button class="btn btn-g" data-act="msReset">${I.undo} Varsayılana dön</button>
+    </div></div>
+    <div class="card">${ms.length ? `<div class="ms-list">${ms.map(m => { const r = t.ciro >= m, isNext = m === mi.next, pc = Math.min(100, t.ciro/m*100);
+      return `<div class="ms ${r?'reached':''} ${isNext?'next':''}">
+        <div class="amt">${money(m)}</div><div class="bar"><i style="width:${pc}%"></i></div>
+        <div class="st ${r?'c-green':isNext?'c-p':'dim'}">${r ? '✓ Ulaşıldı' : isNext ? `Sıradaki · %${Math.round(pc)}` : `%${pc.toFixed(pc<1?1:0)}`}</div>
+        <button class="icon-btn del" data-act="msDel" data-v="${m}" title="Basamağı sil">${I.trash}</button></div>`; }).join('')}</div>`
+      : empty('layers', 'Hiç basamak yok', 'Yukarıdan yeni basamak ekleyin.')}</div>
+  </div>`;
+};
+
+/* ---------- GÜNLÜK CİRO TAKİBİ ---------- */
+V.daily = () => {
+  const all = months(); const cur = clampD(today0());
+  if (!UI.dailyMonth) UI.dailyMonth = `${cur.getFullYear()}-${cur.getMonth()}`;
+  const sel = UI.dailyMonth; const list = sel === 'all' ? all : all.filter(m => `${m.y}-${m.m}` === sel);
+  const md = monthly(); let sc = 0, sn = 0, so = 0, sr = 0;
+  list.forEach(({y,m}) => { for (const k in S.days) { const d = fromKey(k); if (d.getFullYear()===y && d.getMonth()===m) { const x = S.days[k]; sc += +x.ciro||0; sr += +x.reklam||0; so += +x.siparis||0; sn += (+x.ciro||0)-(+x.reklam||0)-(+x.maliyet||0); } } });
+  const idx = all.findIndex(m => `${m.y}-${m.m}` === sel);
+  const todayK = key(today0());
+  const monthBlock = ({y,m}) => {
+    const first = new Date(Math.max(new Date(y,m,1), START)), last = new Date(Math.min(new Date(y,m+1,0), END));
+    const mdat = md.find(x => x.y===y && x.m===m);
+    let cells = ''; const padN = (first.getDay()+6)%7; for (let i=0;i<padN;i++) cells += '<div class="day pad"></div>';
+    for (let d = new Date(first); d <= last; d = addDays(d,1)) {
+      const k = key(d), x = S.days[k], filled = !!x;
+      const net = x ? (+x.ciro||0)-(+x.reklam||0)-(+x.maliyet||0) : 0;
+      cells += `<button class="day ${filled?'filled':''} ${k===todayK?'today':''}" data-act="editDay" data-k="${k}">
+        <div class="dn">${d.getDate()} ${MONTHS[m].slice(0,3)}<small>${DSHORT[d.getDay()]}</small></div>
+        ${filled ? `<div class="dc">${money(+x.ciro||0)}</div><div class="dnet ${net>=0?'c-green':'c-red'}">Net ${money(net)}</div>${+x.siparis ? `<div class="dim" style="font-size:11px">${x.siparis} sipariş${x.not?' · 📝':''}</div>` : (x.not ? '<div class="dim" style="font-size:11px">📝 Not var</div>' : '')}`
+          : `<div class="dplus">+ Veri gir</div>`}</button>`;
+    }
+    return `<div class="card"><div class="month-h"><div class="t">${I.calendar}${MONTHS[m].toLocaleUpperCase('tr-TR')} ${y}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip">Ciro: ${money(mdat.c)}</span><span class="chip ${mdat.n>=0?'green':'red'}">Net: ${money(mdat.n)}</span><span class="chip cyan">${mdat.o} sipariş</span></div></div>
+      <div class="cal">${['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'].map(x=>`<div class="cal-h">${x}</div>`).join('')}${cells}</div></div>`;
+  };
+  return `<div class="container">
+    <div class="card"><div class="card-h">
+      <div><div class="card-title">Aylık & Günlük Ciro Takibi</div><div class="card-sub">16 Kasım 2026 – 31 Aralık 2027 arasındaki finansal verileriniz. Bir güne tıklayarak veri girin, düzenleyin veya silin.</div></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="icon-btn" data-act="dailyShift" data-n="-1" ${sel==='all'||idx<=0?'disabled':''}>${I.left}</button>
+        <select class="select" id="dailyMonth" data-change="dailyMonth" style="width:auto">${opts([['all','Tüm Ayları Göster'], ...all.map(m => [`${m.y}-${m.m}`, `${MONTHS[m.m]} ${m.y}`])], sel)}</select>
+        <button class="icon-btn" data-act="dailyShift" data-n="1" ${sel==='all'||idx>=all.length-1?'disabled':''}>${I.right}</button>
+      </div></div></div>
+    <div class="grid g4">
+      ${stat(sel==='all'?'Dönem Cirosu':'Ay Cirosu', money(sc), '', '', 'wallet')}
+      ${stat('Net Kâr / Zarar', money(sn), sn>=0?'c-green':'c-red', '', 'pulse')}
+      ${stat('Reklam Harcaması', money(sr), 'c-amber', sr ? `ROAS ${(sc/sr).toFixed(2)}` : '', 'mega')}
+      ${stat('Sipariş', nf.format(so) + ' Adet', '', '', 'cart')}
+    </div>
+    ${list.map(monthBlock).join('')}
+  </div>`;
+};
+
+/* ---------- TEST EDİLEN ÜRÜNLER ---------- */
+V.products = () => {
+  const f = UI.prodFilter, q = (UI.prodSearch||'').toLocaleLowerCase('tr-TR');
+  let list = S.products.slice().sort((a,b) => (b.date||'').localeCompare(a.date||'') || b.created - a.created);
+  if (f !== 'all') list = list.filter(p => p.result === f);
+  if (q) list = list.filter(p => (p.name + ' ' + (p.notes||'')).toLocaleLowerCase('tr-TR').includes(q));
+  const sp = S.products.reduce((a,p) => a + (+p.reklam||0), 0), sc = S.products.reduce((a,p) => a + (+p.ciro||0), 0);
+  const w = S.products.filter(p => p.result === 'winner').length;
+  return `<div class="container">
+    <div class="card"><div class="card-h">
+      <div><div class="card-title">E-Ticaret Ürün Test Laboratuvarı</div><div class="card-sub">Test ettiğiniz ürünleri, harcamaları ve sonuçları kayıt altına alın.</div></div>
+      <button class="btn btn-p" data-act="addProduct">${I.plus} Yeni Ürün Ekle</button></div></div>
+    <div class="grid g4">
+      ${stat('Test Edilen Ürün', S.products.length, '', `${S.products.filter(p=>p.result==='testing').length} tanesi test ediliyor`, 'box')}
+      ${stat('Kazanan Ürün', w, 'c-green', S.products.length ? `Başarı oranı %${Math.round(w/S.products.length*100)}` : '', 'award')}
+      ${stat('Test Reklam Harcaması', money(sp), 'c-amber', '', 'mega')}
+      ${stat('Test Cirosu / ROAS', money(sc), '', `ROAS: ${sp ? (sc/sp).toFixed(2) : '—'}`, 'trend')}
+    </div>
+    <div class="card" style="padding:16px"><div class="toolbar">
+      <div class="search">${I.search}<input class="input" id="prodSearch" data-input="prodSearch" value="${esc(UI.prodSearch)}" placeholder="Ürün adı veya nota göre ara..."></div>
+      <select class="select" id="prodFilter" data-change="prodFilter" style="width:auto">${opts([['all','Tüm Sonuçlar'], ...Object.entries(PROD_ST)], f)}</select>
+    </div></div>
+    <div class="card table-wrap"><table class="table">
+      <thead><tr><th>Ürün Adı</th><th>Test Tarihi</th><th>Reklam Harcaması</th><th>Ciro</th><th>ROAS</th><th>Sonuç</th><th>Notlar</th><th style="text-align:right">İşlemler</th></tr></thead>
+      <tbody>${list.length ? list.map(p => { const roas = +p.reklam ? (+p.ciro||0)/+p.reklam : 0; return `<tr>
+        <td><div class="pname">${esc(p.name)}</div>${p.link ? `<a href="${esc(/^https?:\/\//i.test(p.link)?p.link:'https://'+p.link)}" target="_blank" rel="noopener" class="link-btn" style="display:inline-flex;gap:4px;align-items:center;font-size:11.5px">${I.link.replace('<svg','<svg style="width:12px;height:12px"')} Bağlantı</a>` : ''}</td>
+        <td class="muted">${p.date ? dLabel(fromKey(p.date)) : '—'}</td>
+        <td class="c-amber" style="font-weight:600">${money(+p.reklam||0)}</td>
+        <td style="font-weight:600">${money(+p.ciro||0)}</td>
+        <td class="${roas>=2?'c-green':roas>=1?'c-amber':roas?'c-red':'dim'}" style="font-weight:700">${roas ? roas.toFixed(2) : '—'}</td>
+        <td><span class="chip ${PROD_CLS[p.result]}">${PROD_ST[p.result]}</span></td>
+        <td><div class="note" title="${esc(p.notes)}">${esc(p.notes) || '<span class="dim">—</span>'}</div></td>
+        <td><div class="actions"><button class="icon-btn" data-act="prodEdit" data-id="${p.id}" title="Düzenle">${I.edit}</button><button class="icon-btn del" data-act="prodDel" data-id="${p.id}" title="Sil">${I.trash}</button></div></td></tr>`; }).join('')
+      : `<tr><td colspan="8" style="padding:24px">${empty('box', S.products.length ? 'Aramanıza uygun ürün bulunamadı' : 'Henüz test edilen ürün yok', S.products.length ? '' : '"Yeni Ürün Ekle" ile ilk testinizi kaydedin.')}</td></tr>`}</tbody></table></div>
+  </div>`;
+};
+
+/* ---------- OKUDUĞUM KİTAPLAR ---------- */
+V.books = () => {
+  const bs = bookStats(), f = UI.bookFilter, q = (UI.bookSearch||'').toLocaleLowerCase('tr-TR');
+  const order = {reading:0, toread:1, done:2};
+  let list = S.books.slice().sort((a,b) => order[a.status]-order[b.status] || b.created - a.created);
+  if (f !== 'all') list = list.filter(b => b.status === f);
+  if (q) list = list.filter(b => [b.title,b.author,b.cat,b.notes].join(' ').toLocaleLowerCase('tr-TR').includes(q));
+  const gp = S.readingGoal ? Math.min(100, bs.done / S.readingGoal * 100) : 0;
+  const card = b => { const pc = +b.pages ? Math.min(100, (+b.current||0) / +b.pages * 100) : 0;
+    return `<div class="book">
+      <div class="cover" style="background:${coverGrad(b.title)}">${esc((b.title||'?')[0].toLocaleUpperCase('tr-TR'))}</div>
+      <div class="bk-body">
+        <div class="bk-top"><div style="min-width:0"><div class="bk-title">${esc(b.title)}</div>${b.author ? `<div class="bk-author">${esc(b.author)}</div>` : ''}</div>
+          <div class="actions"><button class="icon-btn" data-act="bookEdit" data-id="${b.id}" title="Düzenle">${I.edit}</button><button class="icon-btn del" data-act="bookDel" data-id="${b.id}" title="Sil">${I.trash}</button></div></div>
+        <div class="meta" style="margin-top:0"><span class="chip ${b.status==='done'?'green':b.status==='reading'?'':'amber'}">${BOOK_ST[b.status]}</span>${b.cat ? `<span class="chip cyan">${esc(b.cat)}</span>` : ''}</div>
+        ${+b.pages && b.status !== 'toread' ? `<div><div class="bk-prog"><span>${nf.format(b.status==='done' ? +b.pages : (+b.current||0))} / ${nf.format(+b.pages)} sayfa</span><span>%${b.status==='done'?100:Math.round(pc)}</span></div><div class="bar" style="height:6px"><i style="width:${b.status==='done'?100:pc}%"></i></div></div>` : (+b.pages ? `<div class="dim" style="font-size:12px">${nf.format(+b.pages)} sayfa</div>` : '')}
+        ${stars(+b.rating||0, b.id)}
+        ${b.notes ? `<div class="bk-note">“${esc(b.notes)}”</div>` : ''}
+        ${b.status==='done' && b.end ? `<div class="dim" style="font-size:11.5px">Bitirildi: ${dLabel(fromKey(b.end))}</div>` : ''}
+        <div class="bk-quick">
+          ${b.status==='reading' ? `<button class="btn btn-sm btn-g" data-act="bookPages" data-id="${b.id}">Sayfa güncelle</button><button class="btn btn-sm btn-p" data-act="bookDone" data-id="${b.id}">${I.check} Bitirdim</button>` : ''}
+          ${b.status==='toread' ? `<button class="btn btn-sm btn-p" data-act="bookStart" data-id="${b.id}">Okumaya başla</button>` : ''}
+        </div>
+      </div></div>`; };
+  return `<div class="container">
+    <div class="card"><div class="card-h">
+      <div style="display:flex;gap:18px;align-items:center">${ring(gp, true)}
+        <div><div class="card-title">Okuma Kütüphanem</div><div class="card-sub">Dönem hedefi: <b style="color:var(--text)">${bs.done} / ${S.readingGoal}</b> kitap · <button class="link-btn" data-act="readingGoal">Hedefi değiştir</button></div></div></div>
+      <button class="btn btn-p" data-act="addBook">${I.plus} Kitap Ekle</button></div></div>
+    <div class="grid g4">
+      ${stat('Toplam Kitap', bs.t, '', '', 'book')}
+      ${stat('Okundu', bs.done, 'c-green', '', 'award')}
+      ${stat('Okunuyor', bs.reading, 'c-p', `${bs.toread} kitap sırada`, 'clock')}
+      ${stat('Okunan Sayfa', nf.format(bs.pages), 'c-cyan', '', 'layers')}
+    </div>
+    <div class="toolbar">
+      <div class="tabs">${[['all','Tümü',bs.t],['reading','Okunuyor',bs.reading],['toread','Okunacak',bs.toread],['done','Okundu',bs.done]].map(([v,l,n]) => `<button class="tab ${f===v?'active':''}" data-act="bookFilter" data-f="${v}">${l}<span class="n">${n}</span></button>`).join('')}</div>
+      <div class="search">${I.search}<input class="input" id="bookSearch" data-input="bookSearch" value="${esc(UI.bookSearch)}" placeholder="Kitap, yazar, kategori veya notlarda ara..."></div>
+    </div>
+    ${list.length ? `<div class="books">${list.map(card).join('')}</div>` : empty('book', S.books.length ? 'Bu filtrede kitap yok' : 'Kütüphanen henüz boş', S.books.length ? '' : '"Kitap Ekle" ile okuduğun, okumakta olduğun veya okumak istediğin kitapları kaydet.')}
+  </div>`;
+};
+
+/* ---------- AYARLAR ---------- */
+V.settings = () => {
+  let size = 0; try { size = (localStorage.getItem(KEY) || '').length; } catch(e){}
+  const dc = Object.keys(S.days).length, tc = Object.values(S.todos).reduce((a,l) => a + l.length, 0);
+  return `<div class="container">
+    <div class="card"><div class="card-title">${I.settings} Verileriniz</div>
+      <div class="card-sub">Tüm bilgiler bu tarayıcının yerel deposunda saklanır ve her değişiklikte otomatik kaydedilir. Uygulamayı kapatıp açtığınızda kaybolmaz.</div>
+      <div class="kv"><div>Ciro girilen gün<b>${dc}</b></div><div>Görev<b>${tc}</b></div><div>Kitap / Ürün<b>${S.books.length} / ${S.products.length}</b></div><div>Kullanılan alan<b>${(size/1024).toFixed(1)} KB</b></div></div></div>
+    <div class="card">
+      <div class="set-row"><div><b>Yedek İndir (JSON)</b><p>Tüm verilerinizi tek bir dosya olarak indirir. Haftada bir yedek almanız önerilir; tarayıcı geçmişi/verileri temizlenirse bu dosyayla geri yükleyebilirsiniz.</p></div><button class="btn btn-p" data-act="exportData">${I.download} Yedek İndir</button></div>
+      <div class="set-row"><div><b>Yedekten Geri Yükle</b><p>Daha önce indirdiğiniz yedek dosyasını seçin. Mevcut veriler, yedekteki verilerle değiştirilir.</p></div><button class="btn btn-g" data-act="importData">${I.upload} Yedek Yükle</button></div>
+      <div class="set-row"><div><b>Tüm Verileri Sıfırla</b><p>Profil, hedefler, ciro, ürünler, kitaplar ve görevlerin tamamı silinir. Bu işlem geri alınamaz; önce yedek almanız önerilir.</p></div><button class="btn btn-d" data-act="resetAll">${I.trash} Sıfırla</button></div>
+    </div>
+    <div class="card"><div class="h3">💡 Önemli ipuçları</div><div class="card-sub" style="line-height:1.8;margin-top:10px">
+      • Dosyayı hep <b style="color:var(--text)">aynı klasörden ve aynı tarayıcıdan</b> açın. Dosyayı taşırsanız veya farklı tarayıcıda açarsanız veriler orada görünmez (yedekle taşıyabilirsiniz).<br>
+      • Gizli/sekmesiz (incognito) pencerede kaydedilen veriler pencere kapanınca silinir.<br>
+      • Her silme işleminden sonra sağ altta çıkan <b style="color:var(--text)">“Geri Al”</b> butonuyla yanlışlıkla sildiğinizi geri getirebilirsiniz.<br>
+      • Kısayollar: Formlarda <b style="color:var(--text)">Enter</b> ekler, <b style="color:var(--text)">Esc</b> açık pencereyi kapatır.</div></div>
+  </div>`;
+};
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+let lastView = null;
+function render(){
+  const ae = document.activeElement, fid = ae && ae.id; let ss = null, se = null;
+  try { ss = ae.selectionStart; se = ae.selectionEnd; } catch(e){}
+  const main = $('#main'), sc = main.scrollTop, changed = lastView !== UI.view;
+  renderShell();
+  main.innerHTML = (V[UI.view] || V.profile)();
+  if (changed) { main.firstElementChild.classList.add('anim'); main.scrollTop = 0; } else main.scrollTop = sc;
+  lastView = UI.view;
+  if (fid && !changed) { const el = document.getElementById(fid); if (el && el.matches('input,textarea')) { el.focus(); try { if (ss != null) el.setSelectionRange(ss, se); } catch(e){} } }
+}
+
+/* =========================================================
+   MODAL & TOAST
+   ========================================================= */
+let MC = null;
+function openModal(cfg){
+  MC = cfg;
+  $('#modal').innerHTML = `<div class="modal-h"><h3>${cfg.title}</h3><button class="icon-btn" data-act="closeModal">${I.x}</button></div>
+    ${cfg.sub ? `<p class="card-sub">${cfg.sub}</p>` : ''}
+    <form id="mform" autocomplete="off" novalidate><div class="form">${cfg.body||''}</div>
+    <div class="modal-foot">${cfg.extra ? `<button type="button" class="btn btn-d left" data-act="modalExtra">${I.trash} ${cfg.extra}</button>` : ''}
+      <button type="button" class="btn btn-g" data-act="closeModal">İptal</button>
+      <button type="submit" class="btn ${cfg.danger?'btn-d':'btn-p'}">${cfg.submit||'Kaydet'}</button></div></form>`;
+  $('#modalBack').classList.add('open');
+  const f = $('#mform');
+  f.onsubmit = e => { e.preventDefault(); const data = Object.fromEntries(new FormData(f)); if (cfg.onSubmit(data, f) !== false) closeModal(); };
+  if (cfg.onOpen) cfg.onOpen(f);
+  setTimeout(() => { const el = f.querySelector('[autofocus]') || f.querySelector('input:not([type=date]),textarea'); if (el) el.focus(); }, 60);
+}
+function closeModal(){ $('#modalBack').classList.remove('open'); MC = null; }
+function confirmBox(title, sub, okLabel, fn){ openModal({title, sub, body:'', submit:okLabel, danger:true, onSubmit:() => { fn(); }}); }
+
+function toast(msg, type='success', action){
+  const t = document.createElement('div'); t.className = 'toast ' + type;
+  t.innerHTML = `<span class="ti">${type==='error' ? I.x : type==='info' ? I.trash : I.check}</span><span>${msg}</span>`;
+  if (action) { const b = document.createElement('button'); b.innerHTML = I.undo + action.label; b.onclick = () => { action.fn(); t.remove(); }; t.appendChild(b); }
+  const box = $('#toasts'); box.appendChild(t); while (box.children.length > 4) box.firstChild.remove();
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 300); }, action ? 7000 : 2600);
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+const F = {
+  text:(n,l,v,ph,full,af) => `<div class="field ${full?'full':''}"><label>${l}</label><input class="input" name="${n}" value="${esc(v??'')}" placeholder="${esc(ph||'')}" ${af?'autofocus':''}></div>`,
+  num:(n,l,v,ph,full) => `<div class="field ${full?'full':''}"><label>${l}</label><input class="input" type="number" step="any" min="0" inputmode="decimal" name="${n}" value="${v||v===0&&v!==''?esc(v||''):''}" placeholder="${esc(ph||'0')}"></div>`,
+  date:(n,l,v,full) => `<div class="field ${full?'full':''}"><label>${l}</label><input class="input" type="date" name="${n}" value="${esc(v||'')}"></div>`,
+  sel:(n,l,arr,v,full) => `<div class="field ${full?'full':''}"><label>${l}</label><select class="select" name="${n}">${opts(arr,v)}</select></div>`,
+  area:(n,l,v,ph) => `<div class="field full"><label>${l}</label><textarea class="textarea" name="${n}" placeholder="${esc(ph||'')}">${esc(v||'')}</textarea></div>`,
+};
+function need(f, name){ const el = f.querySelector(`[name=${name}]`); if (!el.value.trim()) { shake(el); return false; } return true; }
+
+function productModal(p){
+  const isNew = !p; p = p || {result:'testing', date:key(today0())};
+  openModal({title: isNew ? 'Yeni Ürün Testi' : 'Ürünü Düzenle', sub:'Ürünün test sürecini, harcamasını ve sonucunu kaydedin.',
+    body: F.text('name','Ürün Adı *',p.name,'Örn. Manyetik telefon tutucu',true,true) + F.date('date','Test Tarihi',p.date) + F.sel('result','Sonuç',Object.entries(PROD_ST),p.result)
+      + F.num('reklam','Reklam Harcaması (TL)',p.reklam) + F.num('ciro','Elde Edilen Ciro (TL)',p.ciro) + F.text('link','Ürün / Mağaza Linki',p.link,'https://...',true)
+      + F.area('notes','Notlar',p.notes,'Hedef kitle, kreatif, CPC, dönüşüm oranı, öğrendikleriniz...'),
+    extra: isNew ? '' : 'Sil', extraFn: () => { closeModal(); A.prodDel({dataset:{id:p.id}}); },
+    onSubmit:(d,f) => { if (!need(f,'name')) return false;
+      const o = {name:d.name.trim(), date:d.date, result:d.result, reklam:num(d.reklam), ciro:num(d.ciro), link:d.link.trim(), notes:d.notes.trim()};
+      if (isNew) S.products.push({id:uid(), created:Date.now(), ...o}); else Object.assign(S.products.find(x => x.id===p.id), o);
+      commit(isNew ? 'Ürün eklendi' : 'Ürün güncellendi'); }});
+}
+function bookModal(b){
+  const isNew = !b; b = b || {status:'reading', cat:'Kişisel Gelişim', start:key(today0())};
+  openModal({title: isNew ? 'Yeni Kitap Ekle' : 'Kitabı Düzenle', sub:'Okuduğun kitabı, ilerlemeni ve aldığın notları kaydet.',
+    body: F.text('title','Kitap Adı *',b.title,'Örn. Atomik Alışkanlıklar',true,true) + F.text('author','Yazar',b.author,'Yazar adı')
+      + F.sel('cat','Kategori',BOOK_CATS,b.cat) + F.sel('status','Durum',Object.entries(BOOK_ST),b.status) + F.sel('rating','Puan',[['0','Puanlanmadı'],['1','★'],['2','★★'],['3','★★★'],['4','★★★★'],['5','★★★★★']],String(b.rating||0))
+      + F.num('pages','Toplam Sayfa',b.pages) + F.num('current','Okunan Sayfa',b.current) + F.date('start','Başlama Tarihi',b.start) + F.date('end','Bitiş Tarihi',b.end)
+      + F.area('notes','Notlar / Öğrendiklerim',b.notes,'Kitaptan aldığın en önemli dersler, uygulayacağın fikirler...'),
+    extra: isNew ? '' : 'Sil', extraFn: () => { closeModal(); A.bookDel({dataset:{id:b.id}}); },
+    onSubmit:(d,f) => { if (!need(f,'title')) return false;
+      const o = {title:d.title.trim(), author:d.author.trim(), cat:d.cat, status:d.status, rating:+d.rating||0, pages:num(d.pages), current:num(d.current), start:d.start, end:d.end, notes:d.notes.trim()};
+      if (o.status === 'done') { if (o.pages) o.current = o.pages; if (!o.end) o.end = key(today0()); }
+      if (isNew) S.books.push({id:uid(), created:Date.now(), ...o}); else Object.assign(S.books.find(x => x.id===b.id), o);
+      commit(isNew ? 'Kitap kütüphanene eklendi 📚' : 'Kitap güncellendi'); }});
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+const findTodo = (k,id) => (S.todos[k] || []).find(x => x.id === id);
+function addTodoTo(k, text, cat, prio){ (S.todos[k] = S.todos[k] || []).push({id:uid(), text, cat, prio, done:false}); }
+
+const A = {
+  nav: el => { UI.view = el.dataset.v; saveUI(); $('#sidebar').classList.remove('open'); $('#scrim').classList.remove('open'); render(); },
+  menu: () => { $('#sidebar').classList.toggle('open'); $('#scrim').classList.toggle('open'); },
+  closeModal, modalExtra: () => MC && MC.extraFn && MC.extraFn(),
+  pickPhoto: () => $('#photoInput').click(),
+  removePhoto: () => withUndo('Fotoğraf kaldırıldı', () => { S.profile.photo = ''; }),
+
+  /* Todos */
+  addTodo: () => { const i = $('#todoIn'), t = i.value.trim(); if (!t) return shake(i);
+    UI.lastCat = $('#todoCat').value; UI.lastPrio = $('#todoPrio').value; saveUI();
+    addTodoTo(UI.todoDate, t, UI.lastCat, UI.lastPrio); commit(); $('#todoIn').focus(); },
+  dashTodo: () => { const i = $('#dashTodo'), t = i.value.trim(); if (!t) return shake(i);
+    addTodoTo(key(clampD(today0())), t, UI.lastCat || 'E-Ticaret', UI.lastPrio || 'mid'); commit('Görev eklendi'); $('#dashTodo').focus(); },
+  todoToggle: el => { const x = findTodo(el.dataset.k, el.dataset.id); if (!x) return; x.done = !x.done; save(); render();
+    const s = todoStats(el.dataset.k); if (x.done && s.t && s.d === s.t) toast('Tüm görevler tamamlandı! Muhteşem bir gün 🔥'); },
+  todoEdit: el => { const k = el.dataset.k, x = findTodo(k, el.dataset.id); if (!x) return;
+    openModal({title:'Görevi Düzenle', body: F.text('text','Görev *',x.text,'',true,true) + F.sel('cat','Kategori',CATS,x.cat) + F.sel('prio','Öncelik',[['high','🔴 Yüksek'],['mid','🟡 Orta'],['low','🟢 Düşük']],x.prio)
+      + F.date('date','Tarih (başka güne taşı)', k, true),
+      extra:'Sil', extraFn: () => { closeModal(); A.todoDel(el); },
+      onSubmit:(d,f) => { if (!need(f,'text')) return false; x.text = d.text.trim(); x.cat = d.cat; x.prio = d.prio;
+        if (d.date && d.date !== k && inRange(fromKey(d.date))) { S.todos[k] = S.todos[k].filter(t => t.id !== x.id); (S.todos[d.date] = S.todos[d.date] || []).push(x); commit(`Görev ${dLabel(fromKey(d.date))} tarihine taşındı`); }
+        else commit('Görev güncellendi'); }}); },
+  todoDel: el => withUndo('Görev silindi', () => { const k = el.dataset.k; S.todos[k] = (S.todos[k]||[]).filter(x => x.id !== el.dataset.id); if (!S.todos[k].length) delete S.todos[k]; }),
+  todoShift: el => { const d = addDays(fromKey(UI.todoDate), +el.dataset.n); if (inRange(d)) { UI.todoDate = key(d); saveUI(); render(); } },
+  todoGo: el => { UI.todoDate = el.dataset.k; saveUI(); render(); },
+  todoToday: () => { UI.todoDate = key(clampD(today0())); saveUI(); render(); if (today0() < START) toast('Dönem 16 Kasım 2026\'da başlıyor — ilk güne gidildi'); },
+  moveUndone: () => { const k = UI.todoDate, nk = key(addDays(fromKey(k), 1));
+    withUndo('Tamamlanmayanlar yarına taşındı', () => { const mv = S.todos[k].filter(x => !x.done); S.todos[k] = S.todos[k].filter(x => x.done); if (!S.todos[k].length) delete S.todos[k];
+      S.todos[nk] = (S.todos[nk] || []).concat(mv.map(x => ({...x, carried:true}))); }); },
+  clearDone: () => withUndo('Tamamlanan görevler temizlendi', () => { const k = UI.todoDate; S.todos[k] = S.todos[k].filter(x => !x.done); if (!S.todos[k].length) delete S.todos[k]; }),
+
+  /* Goals */
+  addGoal: () => { const i = $('#goalIn'), t = i.value.trim(); if (!t) return shake(i);
+    UI.lastGoalCat = $('#goalCat').value; saveUI();
+    S.goals.push({id:uid(), text:t, done:false, cat:UI.lastGoalCat, due:$('#goalDue').value || '', created:Date.now()}); commit('Hedef eklendi 🎯'); $('#goalIn').focus(); },
+  goalToggle: el => { const g = S.goals.find(x => x.id === el.dataset.id); if (!g) return; g.done = !g.done; g.doneAt = g.done ? Date.now() : null; commit(g.done ? 'Tebrikler! Hedef tamamlandı 🏆' : null); },
+  goalEdit: el => { const g = S.goals.find(x => x.id === el.dataset.id); if (!g) return;
+    openModal({title:'Hedefi Düzenle', body: F.text('text','Hedef *',g.text,'',true,true) + F.sel('cat','Kategori',CATS,g.cat) + F.date('due','Hedef Tarihi',g.due),
+      extra:'Sil', extraFn: () => { closeModal(); A.goalDel(el); },
+      onSubmit:(d,f) => { if (!need(f,'text')) return false; g.text = d.text.trim(); g.cat = d.cat; g.due = d.due; commit('Hedef güncellendi'); }}); },
+  goalDel: el => withUndo('Hedef silindi', () => { S.goals = S.goals.filter(x => x.id !== el.dataset.id); }),
+  goalFilter: el => { UI.goalFilter = el.dataset.f; saveUI(); render(); },
+
+  /* Milestones */
+  addMs: () => { const i = $('#msIn'), v = num(i.value); if (v <= 0) return shake(i);
+    if (S.milestones.includes(v)) { toast('Bu basamak zaten var', 'error'); return shake(i); }
+    S.milestones.push(v); commit(`${money(v)} basamağı eklendi`); },
+  msDel: el => withUndo('Basamak silindi', () => { S.milestones = S.milestones.filter(m => m !== +el.dataset.v); }),
+  msReset: () => confirmBox('Basamaklar varsayılana dönsün mü?', 'Eklediğiniz özel basamaklar silinir, varsayılan liste geri yüklenir.', 'Evet, sıfırla', () => withUndo('Basamaklar varsayılana döndü', () => { S.milestones = [...DEFAULT_MS]; })),
+
+  /* Daily */
+  dailyShift: el => { const all = months(), i = all.findIndex(m => `${m.y}-${m.m}` === UI.dailyMonth) + +el.dataset.n; if (all[i]) { UI.dailyMonth = `${all[i].y}-${all[i].m}`; saveUI(); render(); } },
+  editDay: el => { const k = el.dataset.k, x = S.days[k] || {}, dt = fromKey(k);
+    openModal({title: dLong(dt), sub:'Bu günün e-ticaret verilerini girin. Net kâr otomatik hesaplanır.',
+      body: F.num('ciro','Ciro (TL)',x.ciro) + F.num('reklam','Reklam Harcaması (TL)',x.reklam) + F.num('maliyet','Ürün & Diğer Maliyetler (TL)',x.maliyet) + F.num('siparis','Sipariş Adedi',x.siparis)
+        + F.area('not','Günün Notu',x.not,'Kampanya, kreatif değişikliği, gözlemler...') + `<div class="field full"><div class="net-prev" id="netPrev"></div></div>`,
+      extra: S.days[k] ? 'Günü Temizle' : '', extraFn: () => { closeModal(); withUndo(`${dLabel(dt)} verisi silindi`, () => { delete S.days[k]; }); },
+      onOpen: f => { const up = () => { const d = Object.fromEntries(new FormData(f)), c = num(d.ciro), r = num(d.reklam), n = c - r - num(d.maliyet);
+          $('#netPrev').innerHTML = `<div>Net Kâr/Zarar<b class="${n>=0?'c-green':'c-red'}">${money(n)}</b></div><div>ROAS<b>${r ? (c/r).toFixed(2) : '—'}</b></div><div>Kârlılık<b class="c-cyan">%${c ? (n/c*100).toFixed(1) : 0}</b></div>`; };
+        f.addEventListener('input', up); up(); f.querySelector('[name=ciro]').setAttribute('autofocus',''); },
+      onSubmit: d => { const o = {ciro:num(d.ciro), reklam:num(d.reklam), maliyet:num(d.maliyet), siparis:Math.round(num(d.siparis)), not:(d.not||'').trim()};
+        if (!o.ciro && !o.reklam && !o.maliyet && !o.siparis && !o.not) delete S.days[k]; else S.days[k] = o;
+        const before = msInfo(totals().ciro - (o.ciro - (+x.ciro||0))).reached; commit(`${dLabel(dt)} kaydedildi`);
+        const after = msInfo(totals().ciro); if (after.reached > before) setTimeout(() => toast(`🚀 Yeni basamak: ${money(after.cur)}!`), 400); }}); },
+
+  /* Products */
+  addProduct: () => productModal(),
+  prodEdit: el => productModal(S.products.find(x => x.id === el.dataset.id)),
+  prodDel: el => withUndo('Ürün silindi', () => { S.products = S.products.filter(x => x.id !== el.dataset.id); }),
+
+  /* Books */
+  addBook: () => { if (UI.view !== 'books') { UI.view = 'books'; saveUI(); render(); } bookModal(); },
+  bookEdit: el => bookModal(S.books.find(x => x.id === el.dataset.id)),
+  bookDel: el => withUndo('Kitap silindi', () => { S.books = S.books.filter(x => x.id !== el.dataset.id); }),
+  bookFilter: el => { UI.bookFilter = el.dataset.f; saveUI(); render(); },
+  rateBook: el => { const b = S.books.find(x => x.id === el.dataset.id); if (!b) return; const v = +el.dataset.v; b.rating = b.rating === v ? 0 : v; commit(); },
+  bookStart: el => { const b = S.books.find(x => x.id === el.dataset.id); b.status = 'reading'; b.start = b.start || key(today0()); commit('İyi okumalar! 📖'); },
+  bookDone: el => { const b = S.books.find(x => x.id === el.dataset.id); b.status = 'done'; if (+b.pages) b.current = b.pages; b.end = key(today0()); commit('Tebrikler, bir kitap daha bitti! 🎉'); },
+  bookPages: el => { const b = S.books.find(x => x.id === el.dataset.id);
+    openModal({title:'Okuma İlerlemesi', sub: esc(b.title), body: F.num('current','Şu an kaçıncı sayfadasın?',b.current,'',false) + F.num('pages','Toplam sayfa',b.pages,'',false),
+      onOpen: f => f.querySelector('[name=current]').setAttribute('autofocus',''),
+      onSubmit: d => { b.current = num(d.current); b.pages = num(d.pages);
+        if (b.pages && b.current >= b.pages) { b.status = 'done'; b.current = b.pages; b.end = key(today0()); commit('Kitabı bitirdin! 🎉'); } else commit('İlerleme kaydedildi'); }}); },
+  readingGoal: () => openModal({title:'Okuma Hedefi', sub:'16 Kasım 2026 – 31 Aralık 2027 döneminde kaç kitap okumak istiyorsun?', body: F.num('g','Hedef kitap sayısı',S.readingGoal,'',true),
+    onSubmit: d => { S.readingGoal = Math.max(1, Math.round(num(d.g)) || 1); commit('Okuma hedefi güncellendi'); }}),
+
+  /* Settings */
+  exportData: () => { const blob = new Blob([JSON.stringify({app:'evercore-os', exported:new Date().toISOString(), data:S}, null, 2)], {type:'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `evercore-yedek-${key(new Date())}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); toast('Yedek indirildi'); },
+  importData: () => $('#importInput').click(),
+  resetAll: () => confirmBox('Tüm veriler silinsin mi?', 'Bu işlem profil, hedefler, ciro verileri, ürünler, kitaplar ve görevlerin tamamını siler.', 'Evet, her şeyi sil', () => withUndo('Tüm veriler sıfırlandı', () => { S = defaults(); })),
+};
+
+const INPUT = {
+  pfFirst: el => { S.profile.first = el.value; save(); renderShell(); },
+  pfLast: el => { S.profile.last = el.value; save(); renderShell(); },
+  pfSub: el => { S.profile.subtitle = el.value; save(); },
+  prodSearch: el => { UI.prodSearch = el.value; render(); },
+  bookSearch: el => { UI.bookSearch = el.value; render(); },
+};
+const CHANGE = {
+  dailyMonth: el => { UI.dailyMonth = el.value; saveUI(); render(); },
+  prodFilter: el => { UI.prodFilter = el.value; saveUI(); render(); },
+  todoPick: el => { if (el.value && inRange(fromKey(el.value))) { UI.todoDate = el.value; saveUI(); render(); } else toast('Tarih 16 Kasım 2026 – 31 Aralık 2027 arasında olmalı', 'error'); },
+};
+
+/* ---------- Events ---------- */
+document.addEventListener('click', e => { const el = e.target.closest('[data-act]'); if (!el || el.disabled) return; const fn = A[el.dataset.act]; if (fn) { e.preventDefault(); fn(el, e); } });
+document.addEventListener('input', e => { const el = e.target.closest('[data-input]'); if (el && INPUT[el.dataset.input]) INPUT[el.dataset.input](el); });
+document.addEventListener('change', e => { const el = e.target.closest('[data-change]'); if (el && CHANGE[el.dataset.change]) CHANGE[el.dataset.change](el); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && MC) return closeModal();
+  if (e.key === 'Enter' && !e.isComposing) { const el = e.target.closest('[data-enter]'); if (el && A[el.dataset.enter]) { e.preventDefault(); A[el.dataset.enter](el); } }
+});
+$('#modalBack').addEventListener('mousedown', e => { if (e.target.id === 'modalBack') closeModal(); });
+
+$('#photoInput').addEventListener('change', e => {
+  const file = e.target.files[0]; e.target.value = ''; if (!file) return;
+  const r = new FileReader(); r.onload = () => { const img = new Image(); img.onload = () => {
+    const s = 320, c = document.createElement('canvas'); c.width = c.height = s; const m = Math.min(img.width, img.height);
+    c.getContext('2d').drawImage(img, (img.width-m)/2, (img.height-m)/2, m, m, 0, 0, s, s);
+    S.profile.photo = c.toDataURL('image/jpeg', .85); commit('Profil fotoğrafı güncellendi'); };
+    img.onerror = () => toast('Görsel okunamadı', 'error'); img.src = r.result; }; r.readAsDataURL(file);
+});
+$('#importInput').addEventListener('change', e => {
+  const file = e.target.files[0]; e.target.value = ''; if (!file) return;
+  const r = new FileReader(); r.onload = () => { try {
+    const j = JSON.parse(r.result), d = j.data || j; if (!d || typeof d !== 'object' || !('days' in d || 'profile' in d)) throw 0;
+    confirmBox('Yedek geri yüklensin mi?', `Mevcut verilerin, "${esc(file.name)}" dosyasındaki verilerle değiştirilecek.`, 'Geri yükle', () => {
+      withUndo('Yedek başarıyla geri yüklendi', () => { const b = defaults(); S = {...b, ...d, profile:{...b.profile, ...(d.profile||{})}}; }); });
+  } catch(err) { toast('Geçersiz yedek dosyası', 'error'); } }; r.readAsText(file);
+});
+
+/* Kalıcı depolama izni iste (tarayıcının verileri otomatik silmesini engeller) */
+if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+/* Uygulama birden fazla sekmede açıksa verileri senkron tut */
+window.addEventListener('storage', e => { if (e.key === KEY) { S = load(); render(); } });
+
+render();
+</script>
+</body>
+</html>
